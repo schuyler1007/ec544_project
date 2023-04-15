@@ -1,4 +1,4 @@
-/src/build
-/src/sdkconfig
+build
+sdkconfig*
 .vscode
 .DS_Store

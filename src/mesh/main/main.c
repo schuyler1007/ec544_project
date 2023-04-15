@@ -7,6 +7,7 @@
 #include "esp_mesh.h"
 #include "esp_mesh_internal.h"
 #include "mesh_light.h"
+#include "mesh_main.h"
 #include "nvs_flash.h"
 
 /*******************************************************

@@ -1,3 +1,9 @@
 [submodule "src/esp-who"]
 	path = src/esp-who
 	url = https://github.com/schuyler1007/esp-who.git
+[submodule "esp-who"]
+	path = esp-who
+	url = https://github.com/schuyler1007/esp-who.git
+[submodule "src/--force"]
+	path = src/--force
+	url = https://github.com/schuyler1007/esp-who.git
