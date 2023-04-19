@@ -1,15 +1,3 @@
-[submodule "src/esp-who"]
-	path = src/esp-who
-	url = https://github.com/schuyler1007/esp-who.git
-[submodule "esp-who"]
-	path = esp-who
-	url = https://github.com/schuyler1007/esp-who.git
-[submodule "src/--force"]
-	path = src/--force
-	url = https://github.com/schuyler1007/esp-who.git
-[submodule "src/src/face-recognition/esp-who/esp-who"]
-	path = src/src/face-recognition/esp-who/esp-who
-	url = https://github.com/espressif/esp-who.git
 [submodule "src/face-recognition/esp-who"]
 	path = src/face-recognition/esp-who
 	url = https://github.com/espressif/esp-who.git
