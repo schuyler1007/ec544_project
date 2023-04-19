@@ -7,3 +7,6 @@
 [submodule "src/--force"]
 	path = src/--force
 	url = https://github.com/schuyler1007/esp-who.git
+[submodule "src/src/face-recognition/esp-who/esp-who"]
+	path = src/src/face-recognition/esp-who/esp-who
+	url = https://github.com/espressif/esp-who.git
