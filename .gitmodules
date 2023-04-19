@@ -10,3 +10,6 @@
 [submodule "src/src/face-recognition/esp-who/esp-who"]
 	path = src/src/face-recognition/esp-who/esp-who
 	url = https://github.com/espressif/esp-who.git
+[submodule "src/face-recognition/esp-who"]
+	path = src/face-recognition/esp-who
+	url = https://github.com/espressif/esp-who.git
