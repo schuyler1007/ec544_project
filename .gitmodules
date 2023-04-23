@@ -1,6 +1,0 @@
-[submodule "src/face-recognition/esp32_cam_face_recognition"]
-	path = src/face-recognition/esp32_cam_face_recognition
-	url = https://github.com/klumw/esp32_cam_face_recognition.git
-[submodule "src/face_recognition/esp32_cam_face_recognition/esp-who"]
-	path = esp-who
-	url = https://github.com/espressif/esp-who.git
