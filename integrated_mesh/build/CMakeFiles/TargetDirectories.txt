@@ -9,7 +9,7 @@ C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/C
 C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/CMakeFiles/flash.dir
 C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/CMakeFiles/encrypted-flash.dir
 C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/CMakeFiles/_project_elf_src.dir
-C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/CMakeFiles/internal_communication.elf.dir
+C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/CMakeFiles/main.elf.dir
 C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/CMakeFiles/size.dir
 C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/CMakeFiles/size-files.dir
 C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/CMakeFiles/size-components.dir
