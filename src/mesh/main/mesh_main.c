@@ -16,6 +16,9 @@
 #include "esp_mesh_internal.h"
 #include "mesh_light.h"
 #include "nvs_flash.h"
+#include "driver/gpio.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 /*******************************************************
  *                Macros
@@ -26,11 +29,13 @@
  *******************************************************/
 #define RX_SIZE          (1500)
 #define TX_SIZE          (1460)
+#define DOOR_SENSOR_PIN  13
 
 /*******************************************************
  *                Variable Definitions
  *******************************************************/
-static const char *MESH_TAG = "mesh_main";
+static const char *MESH_TAG = "mesh_main_door";
+static const char *TAG = "door_sensor";
 static const uint8_t MESH_ID[6] = { 0x77, 0x77, 0x77, 0x77, 0x77, 0x77};
 static uint8_t tx_buf[TX_SIZE] = { 0, };
 static uint8_t rx_buf[RX_SIZE] = { 0, };
@@ -39,6 +44,8 @@ static bool is_mesh_connected = false;
 static mesh_addr_t mesh_parent_addr;
 static int mesh_layer = -1;
 static esp_netif_t *netif_sta = NULL;
+int is_closed;
+int send_count;
 
 mesh_light_ctl_t light_on = {
     .cmd = MESH_CONTROL_CMD,
@@ -61,6 +68,25 @@ mesh_light_ctl_t light_off = {
 /*******************************************************
  *                Function Definitions
  *******************************************************/
+void door_sensor_task(void *arg){
+    while(true){
+        gpio_set_direction(DOOR_SENSOR_PIN, GPIO_MODE_INPUT); //set pin mode
+
+
+        if (gpio_get_level(DOOR_SENSOR_PIN) == 0){  //if low, the two parts of the switch have been separated, aka the door has been opened
+            is_closed = 0;
+            send_count = 0;
+            ESP_LOGI(TAG, "INTRUDER ALERT");    //send an alert
+        } 
+        else{
+            is_closed = 1;
+            send_count = 1;
+            ESP_LOGI(TAG, "No intruder");
+        }
+        vTaskDelay(1 * 1000 / portTICK_PERIOD_MS); 
+    }
+}
+
 void esp_mesh_p2p_tx_main(void *arg)
 {
     int i;
@@ -90,7 +116,8 @@ void esp_mesh_p2p_tx_main(void *arg)
             ESP_LOGI(MESH_TAG, "size:%d/%d,send_count:%d", route_table_size,
                      esp_mesh_get_routing_table_size(), send_count);
         }
-        send_count++;
+        // if (is_closed) send_count++;
+        // else send_count = 0;
         tx_buf[25] = (send_count >> 24) & 0xff;
         tx_buf[24] = (send_count >> 16) & 0xff;
         tx_buf[23] = (send_count >> 8) & 0xff;
@@ -132,7 +159,7 @@ void esp_mesh_p2p_rx_main(void *arg)
     int recv_count = 0;
     esp_err_t err;
     mesh_addr_t from;
-    int send_count = 0;
+    // int send_count = 0;
     mesh_data_t data;
     int flag = 0;
     data.data = rx_buf;
@@ -148,10 +175,11 @@ void esp_mesh_p2p_rx_main(void *arg)
         }
         /* extract send count */
         if (data.size >= sizeof(send_count)) {
-            send_count = (data.data[25] << 24) | (data.data[24] << 16)
+            recv_count = (data.data[25] << 24) | (data.data[24] << 16)
                          | (data.data[23] << 8) | data.data[22];
+            ESP_LOGI(MESH_TAG, "recieved: %d", recv_count);
         }
-        recv_count++;
+        // recv_count++;
         /* process light control */
         mesh_light_process(&from, data.data, data.size);
         if (!(recv_count % 1)) {
@@ -387,6 +415,7 @@ void ip_event_handler(void *arg, esp_event_base_t event_base,
 
 void app_main(void)
 {
+    xTaskCreate(door_sensor_task, "door_task", 4096, NULL, 5, NULL);
     ESP_ERROR_CHECK(mesh_light_init());
     ESP_ERROR_CHECK(nvs_flash_init());
     /*  tcpip initialization */
