@@ -2,34 +2,34 @@
 	"sources" : 
 	[
 		{
-			"file" : "C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/CMakeFiles/bootloader"
+			"file" : "/Users/kaedekawata/Documents/EC544/ec544_project/integrated_mesh/build/CMakeFiles/bootloader"
 		},
 		{
-			"file" : "C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/CMakeFiles/bootloader.rule"
+			"file" : "/Users/kaedekawata/Documents/EC544/ec544_project/integrated_mesh/build/CMakeFiles/bootloader.rule"
 		},
 		{
-			"file" : "C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/CMakeFiles/bootloader-complete.rule"
+			"file" : "/Users/kaedekawata/Documents/EC544/ec544_project/integrated_mesh/build/CMakeFiles/bootloader-complete.rule"
 		},
 		{
-			"file" : "C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+			"file" : "/Users/kaedekawata/Documents/EC544/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
 		},
 		{
-			"file" : "C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+			"file" : "/Users/kaedekawata/Documents/EC544/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
 		},
 		{
-			"file" : "C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+			"file" : "/Users/kaedekawata/Documents/EC544/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
 		},
 		{
-			"file" : "C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+			"file" : "/Users/kaedekawata/Documents/EC544/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
 		},
 		{
-			"file" : "C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+			"file" : "/Users/kaedekawata/Documents/EC544/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
 		},
 		{
-			"file" : "C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+			"file" : "/Users/kaedekawata/Documents/EC544/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
 		},
 		{
-			"file" : "C:/Users/16177/Dropbox/PC/Documents/GitHub/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+			"file" : "/Users/kaedekawata/Documents/EC544/ec544_project/integrated_mesh/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
 		}
 	],
 	"target" : 

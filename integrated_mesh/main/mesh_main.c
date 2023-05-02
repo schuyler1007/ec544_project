@@ -27,7 +27,7 @@
  *******************************************************/
 #define RX_SIZE          (1500)
 #define TX_SIZE          (1460)
-#define DOOR_SENSOR_PIN  19
+#define DOOR_SENSOR_PIN  13
 
 
 /*******************************************************
@@ -155,6 +155,7 @@ void esp_mesh_p2p_rx_main(void *arg)
         if (data.size >= sizeof(send_count)) {
             send_count = (data.data[25] << 24) | (data.data[24] << 16)
                          | (data.data[23] << 8) | data.data[22];
+            ESP_LOGI(MESH_TAG, "recieved: %d", recv_count);
         }
         recv_count++;
         /* process light control */
@@ -406,19 +407,38 @@ void app_main(void)
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &ip_event_handler, NULL));
     ESP_ERROR_CHECK(esp_wifi_set_storage(WIFI_STORAGE_FLASH));
     ESP_ERROR_CHECK(esp_wifi_start());
+    ESP_ERROR_CHECK(esp_mesh_init());
     while(true){
         gpio_set_direction(DOOR_SENSOR_PIN, GPIO_MODE_INPUT); //set pin mode
         if (gpio_get_level(DOOR_SENSOR_PIN) == 0){  //if low, the two parts of the switch have been separated, aka the door has been opened
             /*  mesh initialization */
-            ESP_ERROR_CHECK(esp_mesh_init());
             ESP_ERROR_CHECK(esp_event_handler_register(MESH_EVENT, ESP_EVENT_ANY_ID, &mesh_event_handler, NULL));
-            ESP_LOGI(DOOR_TAG, "INTRUDER ALERT");    //send an alert
+            // ESP_LOGI(DOOR_TAG, "INTRUDER ALERT");    //send an alert
             /*  set mesh topology */
             ESP_ERROR_CHECK(esp_mesh_set_topology(CONFIG_MESH_TOPOLOGY));
             /*  set mesh max layer according to the topology */
             ESP_ERROR_CHECK(esp_mesh_set_max_layer(CONFIG_MESH_MAX_LAYER));
             ESP_ERROR_CHECK(esp_mesh_set_vote_percentage(1));
             ESP_ERROR_CHECK(esp_mesh_set_xon_qsize(128));
+
+                mesh_cfg_t cfg = MESH_INIT_CONFIG_DEFAULT();
+            /* mesh ID */
+            memcpy((uint8_t *) &cfg.mesh_id, MESH_ID, 6);
+            /* router */
+            cfg.channel = CONFIG_MESH_CHANNEL;
+            cfg.router.ssid_len = strlen(CONFIG_MESH_ROUTER_SSID);
+            memcpy((uint8_t *) &cfg.router.ssid, CONFIG_MESH_ROUTER_SSID, cfg.router.ssid_len);
+            memcpy((uint8_t *) &cfg.router.password, CONFIG_MESH_ROUTER_PASSWD,
+                strlen(CONFIG_MESH_ROUTER_PASSWD));
+            /* mesh softAP */
+            ESP_ERROR_CHECK(esp_mesh_set_ap_authmode(CONFIG_MESH_AP_AUTHMODE));
+            cfg.mesh_ap.max_connection = CONFIG_MESH_AP_CONNECTIONS;
+            cfg.mesh_ap.nonmesh_max_connection = CONFIG_MESH_NON_MESH_AP_CONNECTIONS;
+            memcpy((uint8_t *) &cfg.mesh_ap.password, CONFIG_MESH_AP_PASSWD,
+                strlen(CONFIG_MESH_AP_PASSWD));
+            ESP_ERROR_CHECK(esp_mesh_set_config(&cfg));
+            /* mesh start */
+            ESP_ERROR_CHECK(esp_mesh_start());
         }
         else{
              ESP_LOGI(DOOR_TAG, "No intruder");
