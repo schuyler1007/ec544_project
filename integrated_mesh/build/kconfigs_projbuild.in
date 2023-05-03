@@ -1,6 +1,0 @@
-source "/Users/kaedekawata/esp/esp-idf/components/app_update/Kconfig.projbuild"
-source "/Users/kaedekawata/esp/esp-idf/components/bootloader/Kconfig.projbuild"
-source "/Users/kaedekawata/esp/esp-idf/components/esp_rom/Kconfig.projbuild"
-source "/Users/kaedekawata/esp/esp-idf/components/esptool_py/Kconfig.projbuild"
-source "/Users/kaedekawata/esp/esp-idf/components/partition_table/Kconfig.projbuild"
-source "/Users/kaedekawata/Documents/EC544/ec544_project/integrated_mesh/main/Kconfig.projbuild"
