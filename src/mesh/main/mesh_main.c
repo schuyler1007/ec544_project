@@ -74,12 +74,12 @@ void door_sensor_task(void *arg){
 
 
         if (gpio_get_level(DOOR_SENSOR_PIN) == 0){  //if low, the two parts of the switch have been separated, aka the door has been opened
-            is_closed = 0;
+            is_closed = 1;
             // send_count = 0;
             ESP_LOGI(TAG, "INTRUDER ALERT");    //send an alert
         } 
         else{
-            is_closed = 1;
+            is_closed = 0;
             // send_count = 1;
             ESP_LOGI(TAG, "No intruder");
         }
