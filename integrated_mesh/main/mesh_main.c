@@ -123,6 +123,7 @@ void esp_mesh_p2p_tx_main(void *arg)
                          MAC2STR(route_table[i].addr), esp_get_minimum_free_heap_size(),
                          err, data.proto, data.tos);
             }
+            ESP_LOGI(MESH_TAG, "sent: %d", send_count);
         }
         /* if route_table_size is less than 10, add delay to avoid watchdog in this task. */
         if (route_table_size < 10) {
