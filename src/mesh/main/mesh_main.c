@@ -29,7 +29,7 @@
  *******************************************************/
 #define RX_SIZE          (1500)
 #define TX_SIZE          (1460)
-#define DOOR_SENSOR_PIN  13
+#define DOOR_SENSOR_PIN  14
 
 /*******************************************************
  *                Variable Definitions
@@ -73,7 +73,7 @@ void door_sensor_task(void *arg){
         gpio_set_direction(DOOR_SENSOR_PIN, GPIO_MODE_INPUT); //set pin mode
 
 
-        if (gpio_get_level(DOOR_SENSOR_PIN) == 0){  //if low, the two parts of the switch have been separated, aka the door has been opened
+        if (gpio_get_level(DOOR_SENSOR_PIN) == 1){  //if low, the two parts of the switch have been separated, aka the door has been opened
             is_closed = 1;
             // send_count = 0;
             ESP_LOGI(TAG, "INTRUDER ALERT");    //send an alert

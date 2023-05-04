@@ -1,7 +1,5 @@
 /* Mesh Internal Communication Example
-
    This example code is in the Public Domain (or CC0 licensed, at your option.)
-
    Unless required by applicable law or agreed to in writing, this
    software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
    CONDITIONS OF ANY KIND, either express or implied.
@@ -158,10 +156,10 @@ void esp_mesh_p2p_rx_main(void *arg)
                          | (data.data[23] << 8) | data.data[22];
             is_closed = send_count;
             ESP_LOGI(MESH_TAG, "recieved: %d", send_count);
-            // ESP_LOGI(MESH_TAG, "is_closed: %d", is_closed);
+            ESP_LOGI(MESH_TAG, "is_closed: %d", is_closed);
         }
         recv_count++;
-        // ESP_LOGI(MESH_TAG, "recv_count: %d", recv_count);
+        ESP_LOGI(MESH_TAG, "recv_count: %d", recv_count);
         /* process light control */
         mesh_light_process(&from, data.data, data.size);
         if (!(recv_count % 1)) {
